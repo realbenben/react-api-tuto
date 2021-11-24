@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Post from "./components/Post";
+import "./App.css";
 //
 //
 //promesse dans des promesses (pas ouf😒)
@@ -31,8 +33,8 @@ class App extends Component {
         return response.json();
       })
       .then((result) => {
-        // set time out pour simuler chargement(1500 = 1500ms/=1.5 seconde)👍🏻
-        setTimeout(() => {}, 1500);
+        // set time out pour simuler chargement(3000 = 3000ms/=3 secondes)👍🏻
+        setTimeout(() => {}, 3000);
         this.setState({ post: result });
       });
   }
@@ -40,7 +42,17 @@ class App extends Component {
     return (
       <div>
         <h1>Notre premier article:</h1>
-        <h2>{this.state.post.title}</h2>
+        {/* affiche uniquement un resultat */}
+        {/* <h2>{this.state.post.title}</h2> */}
+        {/*  */}
+        {/*  */}
+        <h2>
+          {this.state.post.title ? this.state.post.title : <p>Loading...</p>}
+        </h2>
+        <div className="separation">
+          <h1 className="title">Separation de composant </h1>
+        </div>
+        <Post />
       </div>
     );
   }
